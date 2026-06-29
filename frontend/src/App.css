@@ -1,0 +1,28 @@
+.page {
+  margin: 0 auto;
+  max-width: 40rem;
+  padding: 3rem 1.5rem;
+  font-family: system-ui, sans-serif;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+}
+
+.lead {
+  color: #555;
+  margin: 0 0 1rem;
+}
+
+.message {
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  background: #f0f7ff;
+  border: 1px solid #c5d9f5;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #b00020;
+}
