@@ -1,10 +1,10 @@
 # testproject
 
-Basit örnek: React ana sayfa, backend `appsettings.json` değerini API üzerinden gösterir.
+Basit örnek: React ana sayfa, backend `AppSettings:DisplayMessage` değerini API üzerinden gösterir.
 
 ## Yapı
 
-- `backend/TestProject.Api` — ASP.NET Core API (`AppSettings:DisplayMessage`)
+- `backend/TestProject.Api` — ASP.NET Core API (`AppSettings:DisplayMessage`, `/health`, `/api/config`)
 - `frontend` — React (Vite); `dist/` üretilmiş statik çıktı
 
 ## Çalıştırma
@@ -16,7 +16,10 @@ cd backend/TestProject.Api
 dotnet run
 ```
 
-API: `http://localhost:5018/api/config`
+- Health: `http://localhost:8080/health`
+- API: `http://localhost:8080/api/config`
+
+Konteyner / Docker imajında dinlenen port **8080** (`ASPNETCORE_HTTP_PORTS`).
 
 **Frontend (geliştirme)**
 
@@ -26,6 +29,8 @@ npm install
 npm run dev
 ```
 
+Vite proxy: `/api` → `http://localhost:8080`
+
 **Frontend build**
 
 ```bash
@@ -34,4 +39,23 @@ npm install
 npm run build
 ```
 
-`appsettings.json` içindeki `AppSettings:DisplayMessage` değerini değiştirip API'yi yeniden başlatın; React ana sayfa bu metni gösterir.
+## Ortam değişkenleri (Vault / deploy)
+
+API, configuration key `AppSettings:DisplayMessage` okur. Linux konteyner / compose ortamında:
+
+```bash
+AppSettings__DisplayMessage=Vault'tan gelen metin
+```
+
+AppGraph vault binding:
+
+| Alan | Değer |
+|------|--------|
+| Anahtar | `AppSettings__DisplayMessage` |
+| Secret | `newproject` (örnek) |
+
+Vault KV alan adı da **aynı** olmalı: `AppSettings__DisplayMessage`
+
+## Nginx
+
+Production’da React `fetch('/api/config')` kullanır; reverse proxy `/api` → API servisi (**pass-through**).
