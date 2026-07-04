@@ -5,6 +5,7 @@ Basit örnek: React ana sayfa, backend `AppSettings:DisplayMessage` değerini AP
 ## Yapı
 
 - `backend/TestProject.Api` — ASP.NET Core API (`AppSettings:DisplayMessage`, `/health`, `/api/config`)
+- `backend/TestProject.Text` — büyük harfleri küçük harfe çeviren yardımcı kütüphane (API `/api/config` yanıtında kullanır)
 - `frontend` — React (Vite); `dist/` üretilmiş statik çıktı
 
 ## Çalıştırma
