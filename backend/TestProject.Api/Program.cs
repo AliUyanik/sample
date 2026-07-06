@@ -1,5 +1,3 @@
-using TestProject.Text;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
@@ -10,9 +8,9 @@ var app = builder.Build();
 
 app.UseCors();
 
-var displayMessage = UpperToLowerConverter.Convert(
+var displayMessage = (
     builder.Configuration["AppSettings:DisplayMessage"]
-    ?? "AppSettings:DisplayMessage tanımlı değil.");
+    ?? "AppSettings:DisplayMessage tanımlı değil.").Trim();
 
 app.MapGet("/health", () => Results.Ok(new { status = "healthy" }));
 app.MapGet("/api/config", () => new { displayMessage });
