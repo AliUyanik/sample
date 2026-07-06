@@ -15,12 +15,21 @@ h1 {
   margin: 0 0 1rem;
 }
 
+.lead-spaced {
+  margin-top: 2rem;
+}
+
 .message {
   padding: 1rem 1.25rem;
   border-radius: 8px;
   background: #f0f7ff;
   border: 1px solid #c5d9f5;
   font-size: 1.1rem;
+}
+
+.message-secondary {
+  background: #f4fbf4;
+  border-color: #c5e8c5;
 }
 
 .error {
