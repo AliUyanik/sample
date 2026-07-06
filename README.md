@@ -5,6 +5,7 @@ Basit örnek: React ana sayfa, backend `AppSettings:DisplayMessage` değerini AP
 ## Yapı
 
 - `backend/TestProject.Api` — ASP.NET Core API (`AppSettings:DisplayMessage`, `/health`, `/api/config`)
+- `backend/Greeting.Api` — ayrı ASP.NET Core API (`/health`, `/api/message` → statik “Merhaba dünya”)
 - `frontend` — React (Vite); `dist/` üretilmiş statik çıktı
 
 ## Çalıştırma
@@ -29,7 +30,17 @@ npm install
 npm run dev
 ```
 
-Vite proxy: `/api` → `http://localhost:8080`
+Vite proxy: `/api` → `http://localhost:8080`, `/greeting-api` → `http://localhost:8081`
+
+**Greeting API (geliştirme)**
+
+```bash
+cd backend/Greeting.Api
+dotnet run
+```
+
+- Health: `http://localhost:8081/health`
+- API: `http://localhost:8081/api/message`
 
 **Frontend build**
 
@@ -58,4 +69,7 @@ Vault KV alan adı da **aynı** olmalı: `AppSettings__DisplayMessage`
 
 ## Nginx
 
-Production’da React `fetch('/api/config')` kullanır; reverse proxy `/api` → API servisi (**pass-through**).
+Production’da React `fetch('/api/config')` ve `fetch('/greeting-api/api/message')` kullanır; reverse proxy:
+
+- `/api` → TestProject.Api servisi
+- `/greeting-api` → Greeting.Api servisi (**pass-through**, path öneki korunur veya upstream’e rewrite edilir)

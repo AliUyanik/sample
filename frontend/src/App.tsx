@@ -26,7 +26,7 @@ function App() {
         setConfigError(err instanceof Error ? err.message : 'Bilinmeyen hata');
       });
 
-    void fetch('/api/greeting')
+    void fetch('/greeting-api/api/message')
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json() as Promise<GreetingResponse>;

@@ -14,7 +14,6 @@ var displayMessage = (
 
 app.MapGet("/health", () => Results.Ok(new { status = "healthy" }));
 app.MapGet("/api/config", () => new { displayMessage });
-app.MapGet("/api/greeting", () => Results.Ok(new { message = "Merhaba dünya" }));
 
 app.Run();
 
