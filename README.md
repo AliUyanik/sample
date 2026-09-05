@@ -19,6 +19,17 @@ dotnet run
 
 - Health: `http://localhost:8080/health`
 - API: `http://localhost:8080/api/config`
+- Remote API örneği (`IHttpClientFactory`): `http://localhost:8080/api/remote/google`
+
+`TestProject.Api` içinde Redis ve RabbitMQ istemcileri dependency injection'a
+kayıtlıdır. Varsayılan localhost ayarları `appsettings.json` dosyasındadır:
+
+- Redis: `localhost:6379`
+- RabbitMQ: `amqp://guest:guest@localhost:5672/`
+- Google remote API: `https://www.google.com/`
+
+Redis ve RabbitMQ bağlantıları ihtiyaç duyulana kadar oluşturulmadığı için bu
+servisler kapalıyken de API başlatılabilir.
 
 Konteyner / Docker imajında dinlenen port **8080** (`ASPNETCORE_HTTP_PORTS`).
 
