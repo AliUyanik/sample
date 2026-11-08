@@ -1,0 +1,9 @@
+{
+  "name": "node-volta",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "express": "^4.21.2" },
+  "devDependencies": { "@types/node": "^24.13.2" },
+  "volta": { "node": "18.20.4" }
+}
